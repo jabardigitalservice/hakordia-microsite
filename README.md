@@ -1,4 +1,5 @@
 # hakordia
+[![Netlify Status](https://api.netlify.com/api/v1/badges/58ab7d0e-538f-44d8-9051-fba60be31afb/deploy-status)](https://app.netlify.com/sites/hakordia/deploys)
 
 ## Build Setup
 
