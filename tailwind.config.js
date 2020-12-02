@@ -1,3 +1,5 @@
+const { colors } = require('tailwindcss/defaultTheme')
+
 module.exports = {
   future: {
     // removeDeprecatedGapUtilities: true,
@@ -17,7 +19,55 @@ module.exports = {
     ],
   },
   theme: {
-    extend: {},
+    fontFamily: {
+      roboto: ['Roboto'],
+      lato: ['Lato'],
+      lora: ['Lora'],
+    },
+    container: (theme) => ({
+      // To center containers by default
+      // center: true,
+
+      // To add horizontal padding by default
+      padding: theme('spacing.2'),
+    }),
+    extend: {
+      colors: {
+        gray: {
+          ...colors.gray,
+          900: '#212121',
+          800: '#424242',
+          700: '#616161',
+          600: '#757575',
+          300: '#E0E0E0',
+          100: '#F5F5F5',
+        },
+        red: {
+          ...colors.red,
+          600: '#E53935',
+        },
+        green: {
+          ...colors.green,
+          700: '#069550',
+        },
+      },
+      fontSize: {
+        130: '8.125rem',
+        46: '2.875rem',
+        32: '2rem',
+        34: '2.125rem',
+        36: '2.25rem',
+        21: '1.313rem',
+        18: '1.125rem',
+        14: '0.875rem',
+      },
+      lineHeight: {
+        79: '4.938rem',
+        52: '3.25rem',
+        32: '2.125rem',
+        26: '1.625rem',
+      },
+    },
   },
   variants: {},
   plugins: [],
