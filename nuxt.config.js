@@ -1,11 +1,20 @@
 export default {
+  // passing env
+  env: {
+    baseUrl: process.env.NUXT_BASE_URL,
+    baseApi: process.env.NUXT_BASE_API,
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'hakordia',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Kawal Jawa Barat Untuk Terus Maju Lawan Korupsi',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -25,6 +34,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '~/plugins/axios',
     { src: '~/plugins/signaturePad', mode: 'client' },
     { src: '~/plugins/handTrack', ssr: false },
   ],
@@ -46,7 +56,17 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // share media social
+    'vue-social-sharing/nuxt',
+    // clipboard
+    'nuxt-clipboard',
+    // toast
+    '@nuxtjs/toast',
   ],
+  toast: {
+    position: 'bottom-center',
+    duration: 2000,
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
