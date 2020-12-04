@@ -7,12 +7,14 @@
         </div>
         <div class="font-roboto text-21 text-gray-700">
           Telah terkumpul
-          <span class="font-bold text-red-600 text-21">120.525 Ribu</span>
+          <span class="font-bold text-red-600 text-21">{{
+            totalSignatures.toLocaleString('id')
+          }}</span>
           petisi dan tanda tangan
         </div>
 
         <div class="pt-12">
-          <div class="mx-24">
+          <div class="mx-2 lg:mx-24">
             <div class="w-full my-5">
               <div class="px-4 rounded-t-md">
                 <ul class="flex font-roboto">
@@ -89,14 +91,16 @@
 
 <script>
 export default {
+  props: {
+    totalSignatures: {
+      type: Number,
+      default: 0,
+    },
+  },
   data() {
     return {
       stepSelected: 0,
-      items: [
-        'Pimpinan Provinsi Jawa Barat',
-        'Pimpinan & Staff Organisasi Perangkat Daerah Kotakab SeJabar',
-        'Masyarakat',
-      ],
+      items: ['Pimpinan Provinsi Jawa Barat', 'Masyarakat'],
     }
   },
 }

@@ -59,7 +59,7 @@
           <div class="flex-shrink-0 flex items-center">
             <nuxt-link to="/">
               <img
-                class="block w-auto mr-1"
+                class="block w-auto mr-4"
                 src="/icons/logo_hakordia.png"
                 alt="logo hakordia"
               />

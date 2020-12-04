@@ -53,6 +53,7 @@ module.exports = {
       },
       fontSize: {
         130: '8.125rem',
+        75: '4.688rem',
         46: '2.875rem',
         32: '2rem',
         34: '2.125rem',
@@ -67,6 +68,9 @@ module.exports = {
         32: '2.125rem',
         26: '1.625rem',
       },
+      backgroundImage: (theme) => ({
+        heading: "url('/images/bg-heading.svg')",
+      }),
     },
   },
   variants: {},
