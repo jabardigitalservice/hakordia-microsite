@@ -17,7 +17,7 @@ export const mutations = {
   },
 
   FETCH_TOTAL_FAILURE(state) {
-    state.totalSignatures = null
+    state.totalSignatures = 0
   },
 }
 
