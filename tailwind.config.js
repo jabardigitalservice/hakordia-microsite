@@ -49,7 +49,14 @@ module.exports = {
         },
         green: {
           ...colors.green,
+          800: '#008444',
           700: '#069550',
+          600: '#16A75C',
+        },
+        blue: {
+          ...colors.blue,
+          800: '#1565C0',
+          50: '#E3F2FD',
         },
       },
       fontSize: {

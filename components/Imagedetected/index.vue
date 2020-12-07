@@ -1,6 +1,60 @@
 <template>
-  <div id="app" class="web-camera-container">
-    <div v-if="!isLoadModel" class="camera-button">
+  <div class="w-full py-6">
+    <div>
+      <div
+        v-if="isCameraOpen"
+        v-show="!isLoading"
+        class="rounded-md"
+        :class="{ flash: isShotPhoto }"
+      >
+        <div class="camera-shutter" :class="{ flash: isShotPhoto }"></div>
+
+        <video
+          v-show="!isPhotoTaken"
+          ref="camera"
+          class="w-full video object-fill rounded-t-2xl"
+          :width="450"
+          :height="337.5"
+          autoplay
+        ></video>
+
+        <canvas
+          v-show="isPhotoTaken"
+          id="photoTaken"
+          ref="canvas"
+          :width="450"
+          :height="337.5"
+          class="w-full video object-fill rounded-t-2xl"
+        ></canvas>
+        <template v-if="!isPhotoTaken">
+          <button
+            type="button"
+            class="flex w-full bg-gray-200 justify-center items-center rounded-b-2xl"
+            @click="takePhoto"
+          >
+            <img src="/icons/camera.svg" alt="camera icon" />
+            <div class="ml-2 py-5 text-green-800 font-bold">Ambil Gambar</div>
+          </button>
+        </template>
+
+        <template v-else>
+          <div class="flex w-full lg:w-1/2 mt-6 rounded-md bg-black py-3 px-2">
+            <div class="text-white">Gambar Tangan diambil.</div>
+            <div class="mx-auto">
+              <button
+                class="text-green-600 font-bold px-4"
+                type="button"
+                @click="takePhoto"
+              >
+                Ulangi Ambil Gambar
+              </button>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <!-- <div v-if="!isLoadModel" class="camera-button">
       <button
         type="button"
         class="button is-rounded"
@@ -63,7 +117,7 @@
       >
         Download
       </a>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -73,8 +127,7 @@ export default {
     return {
       isLoadModel: true,
       modelParams: {
-        flipHorizontal: true, // flip e.g for video
-        scoreThreshold: 0.8, // confidence threshold for predictions.,
+        scoreThreshold: 0.9, // confidence threshold for predictions.,
       },
       isDetected: false,
       model: null,
@@ -92,6 +145,7 @@ export default {
       // detect objects in the image.
       this.model = lmodel
       this.isLoadModel = false
+      this.toggleCamera()
       // console.log('Loaded Model!')
       // updateNote.textContent = 'Loaded Model!'
       // trackButton.disabled = false
@@ -186,11 +240,9 @@ export default {
 </script>
 
 <style>
-body {
-  display: flex;
-  justify-content: center;
+.video {
+  height: 30rem;
 }
-
 .web-camera-container {
   margin-top: 2rem;
   margin-bottom: 2rem;

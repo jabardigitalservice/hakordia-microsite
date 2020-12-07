@@ -8,28 +8,66 @@
       </h2>
       <div class="text-gray-800">
         Untuk dapat ikut berpartisipasi dalam petisi online Hakordia, kami
-        membutuhkan beberapa informasi Anda untuk <br />
-        kebutuhan pendataan. Harap mengisikan informasi dibawah ini
-        selengkap-lengkapnya.
+        membutuhkan beberapa informasi Anda untuk kebutuhan pendataan. Harap
+        mengisikan informasi dibawah ini selengkap-lengkapnya.
       </div>
     </div>
 
     <div class="my-8 flex items-center font-roboto font-medium">
       <div class="flex items-center justify-center">
-        <div class="section-step text-white bg-green-700">1</div>
+        <div class="section-step text-white bg-green-700">
+          <div v-if="step === 1">1</div>
+          <div v-else>
+            <svg
+              width="15"
+              height="11"
+              viewBox="0 0 15 11"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M5.73587 6.58581L2.72838 3.65163C2.6616 3.58541 2.58205 3.53273 2.49431 3.49663C2.40658 3.46053 2.31239 3.44171 2.21717 3.44127C2.12195 3.44083 2.02758 3.45877 1.9395 3.49405C1.85141 3.52934 1.77136 3.58127 1.70393 3.64687L0.208723 5.10801C0.0741227 5.24149 -0.000905663 5.42149 8.25236e-06 5.60873C0.000922168 5.79598 0.0777038 5.97527 0.213601 6.10749L4.8724 10.6504C5.09909 10.8721 5.40625 10.9977 5.72726 11C6.04827 11.0022 6.35724 10.8809 6.58713 10.6623L7.23351 10.0316L14.8071 2.64263C14.9347 2.51033 15.0039 2.33441 14.9998 2.15279C14.9957 1.97116 14.9186 1.79839 14.7852 1.67171L13.2875 0.210564C13.158 0.0797892 12.9808 0.00417856 12.7944 0.000168043C12.6081 -0.00384247 12.4276 0.0640706 12.2923 0.189146L5.73587 6.58581Z"
+                fill="white"
+              />
+            </svg>
+          </div>
+        </div>
         <div class="mx-2 text-green-900">Form Data Diri</div>
       </div>
-      <div class="w-24 h-1 border-t-2 mt-1 mx-2"></div>
+      <div
+        :class="[step === 1 ? 'border-gray-300' : 'border-green-700']"
+        class="w-24 h-1 border-t-2 mt-1 mx-2"
+      ></div>
       <div class="flex items-center justify-center">
-        <div class="section-step text-gray-600 bg-gray-200">2</div>
-        <div class="mx-2 text-gray-700">Foto Tangan</div>
+        <div
+          :class="[
+            step === 1
+              ? 'text-gray-600 bg-gray-200'
+              : 'text-white bg-green-700',
+          ]"
+          class="section-step"
+        >
+          2
+        </div>
+        <div
+          :class="[step === 1 ? 'text-gray-700' : 'text-green-900']"
+          class="mx-2"
+        >
+          Foto Tangan
+        </div>
       </div>
     </div>
 
     <form>
       <!-- section form input -->
-      <template>
+      <template v-if="step === 1">
         <FormInput ref="formInput" :form="form" />
+      </template>
+
+      <template v-else-if="step === 2">
+        <FormHand />
       </template>
 
       <!-- section button -->
@@ -87,8 +125,9 @@
 <script>
 import BackButton from '@/components/BackButton'
 import FormInput from './FormInput'
+import FormHand from './FormHand'
 export default {
-  components: { BackButton, FormInput },
+  components: { BackButton, FormInput, FormHand },
   data() {
     return {
       step: 1,
@@ -107,11 +146,19 @@ export default {
   },
   methods: {
     submitForm() {
-      // save signature
-      this.$refs.formInput.saveSignature()
-      console.log(this.form)
+      if (this.step === 1) {
+        // save signature
+        this.$refs.formInput.saveSignature()
+        console.log(this.form)
+        console.log(this.step + 1)
+        return (this.step = this.step + 1)
+      }
+
+      // submit form
+      console.log('submit form')
     },
     goBack() {
+      this.step = this.step - 1
       console.log('go back')
     },
   },
