@@ -113,7 +113,7 @@
                 v-model="form.email"
                 type="email"
                 class="appearance-none block w-full text-grey-darker border focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
-                placeholder="Masukkan Nama Depan"
+                placeholder="Masukkan Email"
               />
               <p class="text-red-500 text-xs italic mt-1">
                 {{ errors[0] }}
