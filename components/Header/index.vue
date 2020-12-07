@@ -1,10 +1,18 @@
 <template>
   <div class="relative flex justify-between w-full mb-8">
     <!-- left side content -->
-    <div class="pl-6 pt-4 lg:pl-24 lg:pt-10">
+    <div class="px-6 pt-4 lg:px-24 lg:pt-10">
       <div>
         <div class="font-lora text-gray-900">
           <div>
+            <!-- on mobile -->
+            <div class="block lg:hidden">
+              <img
+                class="mx-auto"
+                src="/images/logo_hakordia_jabar.png"
+                alt="logo_hakordia_jabar"
+              />
+            </div>
             <div class="text-34 font-bold pb-1">Kawal Jawa Barat Untuk</div>
             <div class="text-36 font-bold leading-52">
               Terus Maju Lawan Korupsi
@@ -83,7 +91,7 @@
           </div>
 
           <div
-            class="w-screen flex lg:absolute justify-center mt-16 pr-4 lg:pr-32 items-center"
+            class="lg:w-screen flex lg:absolute justify-center mt-16 pr-4 lg:pr-32 items-center"
           >
             <img src="/icons/mouse_scroll.svg" alt="icon mouse scroll" />
             <span class="pl-3 text-14 text-gray-800"
