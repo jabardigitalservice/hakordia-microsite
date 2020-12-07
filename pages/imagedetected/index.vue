@@ -173,7 +173,7 @@ export default {
       const canvas = document.getElementById('photoTaken')
       const context = canvas.getContext('2d')
       this.model.detect(img).then((predictions) => {
-        console.log('Predictions: ', predictions)
+        // console.log('Predictions: ', predictions)
         this.model.renderPredictions(predictions, canvas, context, img)
 
         if (predictions.length > 1) {

@@ -37,6 +37,7 @@ export default {
     '~/plugins/axios',
     { src: '~/plugins/signaturePad', mode: 'client' },
     { src: '~/plugins/handTrack', ssr: false },
+    '~/plugins/vee-validate',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -72,5 +73,7 @@ export default {
   axios: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    transpile: ['vee-validate/dist/rules'],
+  },
 }

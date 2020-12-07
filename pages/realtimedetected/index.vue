@@ -60,7 +60,7 @@ export default {
           this.$refs.camera.srcObject = stream
         })
         .catch((_) => {
-          console.log('browser didnt support')
+          // console.log('browser didnt support')
         })
     },
     startVideo() {
@@ -94,7 +94,7 @@ export default {
   },
   authHand() {
     if (this.isDetected) {
-      console.log('save')
+      // console.log('save')
     }
 
     this.isDetected = false
