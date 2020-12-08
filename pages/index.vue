@@ -9,25 +9,8 @@
     <!-- section signatures -->
     <Signatures />
 
-    <!-- <client-only>
-      <div class="container mx-auto px-4">
-        <h2 class="text-center text-4xl p-4">Hakordia</h2>
-
-        <div class="border border-gray-600">
-          <VueSignaturePad ref="signaturePad" width="100%" height="100" />
-        </div>
-        <div class="text-center p-4">
-          <button @click="save">Save</button>
-          <button @click="clear">Clear</button>
-          <button @click="undo">Undo</button>
-          <button @click="openCamera">Open</button>
-        </div>
-
-        <div>
-          <input type="file" accept="image/*" capture="camera" />
-        </div>
-      </div>
-    </client-only> -->
+    <!-- CampaignCommitment -->
+    <CampaignCommitment />
   </div>
 </template>
 
@@ -36,10 +19,11 @@ import { mapGetters } from 'vuex'
 import Header from '@/components/Header'
 import Commitment from '@/components/Commitment'
 import Signatures from '@/components/Signatures'
+import CampaignCommitment from '@/components/CampaignCommitment'
 import { TipeSignature } from '@/constraints/typeSignature'
 
 export default {
-  components: { Header, Commitment, Signatures },
+  components: { Header, Commitment, Signatures, CampaignCommitment },
   data() {
     return {
       TipeSignature,
