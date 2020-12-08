@@ -32,4 +32,13 @@ export const actions = {
       commit('FETCH_TOTAL_FAILURE')
     }
   },
+  async addSignature({ commit }, body) {
+    try {
+      const { data } = await this.$axios.post('/signatures', body)
+
+      return data
+    } catch (e) {
+      return null
+    }
+  },
 }

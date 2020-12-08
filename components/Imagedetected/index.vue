@@ -133,12 +133,6 @@
 
 <script>
 export default {
-  props: {
-    isHandDetected: {
-      type: Boolean,
-      default: false,
-    },
-  },
   data() {
     return {
       isLoadModel: true,
@@ -246,11 +240,13 @@ export default {
         this.model.renderPredictions(predictions, canvas, context, img)
 
         if (predictions.length > 0) {
-          this.isHandDetected = true
-
+          this.setDitect()
           this.$toast.success('Gambar Tangan Berhasil disimpan')
         }
       })
+    },
+    async setDitect() {
+      await this.$store.dispatch('handDetection/setDetect', true)
     },
   },
 }
