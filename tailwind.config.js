@@ -71,6 +71,7 @@ module.exports = {
         18: '1.125rem',
         15: '0.938rem',
         14: '0.875rem',
+        13: '0.813rem',
       },
       lineHeight: {
         79: '4.938rem',

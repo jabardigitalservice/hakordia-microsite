@@ -1,15 +1,23 @@
 <template>
-  <div class="font-roboto mx-24 pb-6">
-    <div class="flex justify-between pb-3 border-b border-gray-300">
-      <div class="text-21 text-gray-800">Pimpinan Provinsi Jawa Barat</div>
-      <div><img src="/icons/chevron.svg" alt="icon arrow" /></div>
-    </div>
-    <div class="mt-4 mb-6 italic text-14 text-gray-700">
-      Klik pada nama untuk melihat detail
+  <div>
+    <!-- leader -->
+    <div class="py-4">
+      <Signature :title="leader" />
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import Signature from './Signature'
+export default {
+  components: { Signature },
+  data() {
+    return {
+      leader: 'Pimpinan Provinsi Jawa Barat',
+      leaderOpd:
+        'Pimpinan & Staff Seluruh Organisasi Perangkat Daerah Kotakab Se-Jabar',
+      mayor: 'Walikota dan Bupati  Provinsi Jawa Barat',
+    }
+  },
+}
 </script>

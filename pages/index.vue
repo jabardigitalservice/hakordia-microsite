@@ -36,11 +36,20 @@ import { mapGetters } from 'vuex'
 import Header from '@/components/Header'
 import Commitment from '@/components/Commitment'
 import Signatures from '@/components/Signatures'
+import { TipeSignature } from '@/constraints/typeSignature'
+
 export default {
   components: { Header, Commitment, Signatures },
   data() {
     return {
+      TipeSignature,
+      isLeader: false,
       imageSignature: null,
+      params: {
+        type: null,
+        search: null,
+        page: null,
+      },
     }
   },
   computed: {
@@ -50,45 +59,37 @@ export default {
   },
   mounted() {
     this.getTotalSignature()
+    const paramsLeader = {
+      ...this.params,
+      type: TipeSignature.LEADER,
+    }
+
+    const paramsOpd = {
+      ...this.params,
+      type: TipeSignature.LEADEROPD,
+    }
+
+    const paramsMayor = {
+      ...this.params,
+      type: TipeSignature.MAYOR,
+    }
+
+    // fetch leader
+    this.fetchSignature(paramsLeader)
+
+    // fetch leader OPD
+    this.fetchSignature(paramsOpd)
+
+    // fetch leader OPD
+    this.fetchSignature(paramsMayor)
   },
   methods: {
     async getTotalSignature() {
       // Fetch auth
       await this.$store.dispatch('signature/fetchTotal')
     },
-    openCamera() {
-      const constraints = (window.constraints = {
-        audio: false,
-        video: {
-          facingMode: {
-            exact: 'environment',
-          },
-        },
-      })
-
-      navigator.mediaDevices
-        .getUserMedia(constraints)
-        .then((stream) => {
-          this.$refs.camera.srcObject = stream
-        })
-        .catch((_) => {
-          // console.log('browser didnt support')
-        })
-    },
-    undo() {
-      this.$refs.signaturePad.undoSignature()
-    },
-    clear() {
-      this.$refs.signaturePad.clearSignature()
-    },
-    save() {
-      const { isEmpty, data } = this.$refs.signaturePad.saveSignature()
-
-      if (!isEmpty) {
-        this.imageSignature = data
-      }
-      // console.log(isEmpty)
-      // console.log(data)
+    async fetchSignature(params) {
+      await this.$store.dispatch('signature/fetchSignature', params)
     },
   },
 }
