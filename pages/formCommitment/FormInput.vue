@@ -32,29 +32,20 @@
 
       <!-- last name -->
       <div class="w-full lg:w-1/2">
-        <ValidationProvider
-          v-slot="{ errors }"
-          name="last_name"
-          rules="required"
-        >
-          <div class="md:flex mb-5">
-            <div class="md:w-full pr-0 lg:pr-8">
-              <label
-                class="block tracking-wide text-15 text-grey-darker text-gray-800 font-bold mb-2"
-              >
-                Nama Belakang
-              </label>
-              <input
-                v-model="form.last_name"
-                class="appearance-none block w-full text-grey-darker border focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
-                placeholder="Masukkan Nama Belakang"
-              />
-              <p class="text-red-500 text-xs italic mt-1">
-                {{ errors[0] }}
-              </p>
-            </div>
+        <div class="md:flex mb-5">
+          <div class="md:w-full pr-0 lg:pr-8">
+            <label
+              class="block tracking-wide text-15 text-grey-darker text-gray-800 font-bold mb-2"
+            >
+              Nama Belakang
+            </label>
+            <input
+              v-model="form.last_name"
+              class="appearance-none block w-full text-grey-darker border focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
+              placeholder="Masukkan Nama Belakang"
+            />
           </div>
-        </ValidationProvider>
+        </div>
       </div>
     </div>
 
@@ -136,10 +127,21 @@
               Tanda Tangan
             </label>
             <div
-              class="border mb-4 focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
+              class="border h-300 mb-4 focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
             >
               <client-only>
-                <VueSignaturePad ref="signaturePad" class="w-full h-full" />
+                <div class="relative">
+                  <VueSignaturePad
+                    ref="signaturePad"
+                    class="w-full"
+                    height="270px"
+                  />
+                  <div
+                    class="absolute top-0 w-full flex justify-center py-3 text-gray-600"
+                  >
+                    Tanda Tangan Disini
+                  </div>
+                </div>
               </client-only>
             </div>
             <div class="flex justify-end">
@@ -216,4 +218,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+.h-300 {
+  height: 18.75rem;
+}
+</style>

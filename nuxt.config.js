@@ -3,6 +3,7 @@ export default {
   env: {
     baseUrl: process.env.NUXT_BASE_URL,
     baseApi: process.env.NUXT_BASE_API,
+    siteKey: process.env.NUXT_SITE_KEY,
   },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -63,7 +64,16 @@ export default {
     'nuxt-clipboard',
     // toast
     '@nuxtjs/toast',
+    // recaptcha
+    '@nuxtjs/recaptcha',
   ],
+
+  recaptcha: {
+    hideBadge: true,
+    siteKey: process.env.NUXT_SITE_KEY,
+    version: 3,
+  },
+
   toast: {
     position: 'bottom-center',
     duration: 2000,
