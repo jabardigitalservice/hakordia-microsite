@@ -1,7 +1,7 @@
 <template>
   <div class="w-full py-6">
     <template v-if="isLoadModel">
-      <div class="flex justify-center">
+      <div class="flex justify-center h-64">
         <img src="/icons/loading.svg" alt="loading" />
       </div>
     </template>
@@ -133,13 +133,18 @@
 
 <script>
 export default {
+  props: {
+    isHandDetected: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       isLoadModel: true,
       modelParams: {
         scoreThreshold: 0.9, // confidence threshold for predictions.,
       },
-      isDetected: false,
       model: null,
       isCameraOpen: false,
       isPhotoTaken: false,
@@ -240,8 +245,10 @@ export default {
         // console.log('Predictions: ', predictions)
         this.model.renderPredictions(predictions, canvas, context, img)
 
-        if (predictions.length > 1) {
-          alert('silahkan diulang kembali')
+        if (predictions.length > 0) {
+          this.isHandDetected = true
+
+          this.$toast.success('Gambar Tangan Berhasil disimpan')
         }
       })
     },

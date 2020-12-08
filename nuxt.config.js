@@ -71,7 +71,7 @@ export default {
   recaptcha: {
     hideBadge: true,
     siteKey: process.env.NUXT_SITE_KEY,
-    version: 3,
+    version: 2,
   },
 
   toast: {

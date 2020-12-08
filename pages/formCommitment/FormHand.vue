@@ -2,7 +2,7 @@
   <div class="lg:pr-8">
     <Notification />
     <div>
-      <Imagedetected />
+      <Imagedetected :is-hand-detected="isHandDetected" />
     </div>
   </div>
 </template>
@@ -12,5 +12,11 @@ import Notification from '@/components/Notification'
 import Imagedetected from '@/components/Imagedetected'
 export default {
   comments: { Notification, Imagedetected },
+  props: {
+    isHandDetected: {
+      type: Boolean,
+      default: false,
+    },
+  },
 }
 </script>
