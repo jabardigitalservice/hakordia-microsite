@@ -1,8 +1,14 @@
 <template>
-  <div class="font-roboto mx-24 pb-6">
-    <div class="flex justify-between pb-3 border-b border-gray-300">
-      <div class="text-21 text-gray-800 font-medium">{{ title }}</div>
-      <div><img src="/icons/chevron.svg" alt="icon arrow" /></div>
+  <div class="font-roboto mx-6 lg:mx-24 pb-6">
+    <div
+      class="flex justify-between place-items-auto pb-3 border-b border-gray-300"
+    >
+      <div class="text-base lg:text-21 text-gray-800 font-medium">
+        {{ title }}
+      </div>
+      <div class="w-10 h-10">
+        <img src="/icons/chevron.svg" alt="icon arrow" />
+      </div>
     </div>
     <div class="mt-4 italic text-14 text-gray-700">
       Klik pada nama untuk melihat detail
@@ -10,7 +16,11 @@
 
     <!-- leader -->
     <template v-if="isLeader && leaders.length">
-      <div class="mx-0 lg:mx-16 grid grid-cols-4">
+      <!-- mobile version -->
+      <SiganatureMobile :signatures="leaders" />
+
+      <!-- desktop version -->
+      <div class="hidden lg:grid mx-0 lg:mx-16 grid-cols-4">
         <div
           v-for="(data, index) in leaders"
           :key="index"
@@ -42,7 +52,7 @@
 
     <!-- normal -->
     <template v-else>
-      <div class="mx-0 lg:mx-16 grid grid-cols-4">
+      <div class="hidden lg:grid mx-0 lg:mx-16 grid-cols-4">
         <div
           v-for="(data, index) in [0, 1, 2, 3, 4, 5, 6, 8]"
           :key="index"
@@ -51,13 +61,13 @@
         >
           <div class="max-w-md text-center">
             <img
-              :src="'https://storage.googleapis.com/hakordia-store/gen/ttd-example.png'"
+              :src="'https://storage.googleapis.com/hakordia-store/prod/gen/ttd-example.png'"
               alt="ttd"
             />
             <h3 class="text-14 font-bold text-gray-9000">
               {{ data }}
             </h3>
-            <span class="text-13 text-gray-700"> {{ data }}</span>
+            <span class="text-13 text-gray-700"> dummy {{ data }}</span>
           </div>
         </div>
       </div>
@@ -67,7 +77,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import SiganatureMobile from './SiganatureMobile'
 export default {
+  components: { SiganatureMobile },
   props: {
     isLeader: {
       type: Boolean,

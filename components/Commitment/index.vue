@@ -1,13 +1,15 @@
 <template>
   <div>
-    <div class="bg-gray-100">
+    <div class="bg-gray-100 px-6">
       <div class="text-center pt-6">
-        <div class="font-roboto text-gray-900 font-medium leading-79 text-46">
+        <div
+          class="font-roboto text-gray-900 font-medium text-32 lg:leading-79 lg:text-46"
+        >
           Komitmen Kami Terhadap Anti-Korupsi
         </div>
-        <div class="font-roboto text-21 text-gray-700">
+        <div class="font-roboto text-18 lg:text-21 text-gray-700">
           Telah terkumpul
-          <span class="font-bold text-red-600 text-21">{{
+          <span class="font-bold text-red-600 lg:text-21">{{
             totalSignatures.toLocaleString('id')
           }}</span>
           petisi dan tanda tangan
@@ -17,7 +19,7 @@
           <div class="mx-2 lg:mx-24">
             <div class="w-full my-5">
               <div class="px-4 rounded-t-md">
-                <ul class="flex font-roboto">
+                <ul class="flex justify-between lg:justify-start font-roboto">
                   <li
                     v-for="(item, index) in items"
                     :key="index"
@@ -26,7 +28,7 @@
                         ? 'text-green-700 border-green-700 border-t-2 border-l-2 border-r-2 bg-white min-mb-2'
                         : 'text-gray-600',
                     ]"
-                    class="cursor-pointer py-2 px-6 font-bold rounded-t-md"
+                    class="cursor-pointer py-2 px-2 lg:px-6 font-bold rounded-t-md"
                     @click="stepSelected = index"
                   >
                     {{ item }}
@@ -41,7 +43,7 @@
     </div>
 
     <!-- form input -->
-    <div class="py-12">
+    <div class="py-6 px-6 lg:py-12">
       <div
         class="flex max-w-lg mx-auto bg-white items-center border p-2 rounded-md"
       >
@@ -66,7 +68,7 @@
         />
 
         <button
-          class="bg-green-700 py-1 px-5 cus-m-1 text-white shadow hover:bg-green-900 rounded"
+          class="bg-green-700 py-3 lg:py-1 px-5 cus-m-1 text-white shadow hover:bg-green-900 rounded"
           style="margin: -1px -1px -1px 0px"
         >
           <span class="hidden lg:block font-bold">Cari</span>

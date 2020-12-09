@@ -63,7 +63,7 @@
         >
       </div>
 
-      <div class="mb-12 lg:mb-20 flex flex-col items-center lg:block">
+      <div class="mb-6 lg:mb-20 flex flex-col items-center lg:block">
         <div class="mb-2 text-14 text-gray-800">
           atau Kamu juga dapat berbagi melalui
         </div>
@@ -71,7 +71,7 @@
           <ShareSocial />
 
           <div
-            class="lg:w-screen flex lg:absolute justify-center mt-16 pr-4 lg:pr-32 items-center"
+            class="lg:w-screen flex lg:absolute justify-center mt-6 lg:mt-16 pr-4 lg:pr-32 items-center"
           >
             <img src="/icons/mouse_scroll.svg" alt="icon mouse scroll" />
             <span class="pl-3 text-14 text-gray-800"

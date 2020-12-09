@@ -8,6 +8,10 @@
 <script>
 export default {
   props: {
+    customClick: {
+      type: Boolean,
+      default: false,
+    },
     text: {
       type: String,
       default: '',
@@ -15,6 +19,10 @@ export default {
   },
   methods: {
     backButton() {
+      if (this.customClick === true) {
+        return this.$emit('handleClick')
+      }
+
       this.$router.back()
     },
   },
