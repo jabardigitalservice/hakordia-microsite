@@ -5,7 +5,11 @@
   >
     <!-- section form commitment -->
     <template v-if="!isSuccess">
-      <BackButton text="Kembali Ke Beranda" />
+      <BackButton
+        text="Kembali Ke Beranda"
+        :custom-click="true"
+        @handleClick="backButton"
+      />
 
       <div class="mt-6">
         <h2 class="text-37 font-medium font-roboto text-gray-900">
@@ -223,6 +227,13 @@ export default {
     },
     onExpired() {
       this.isRecaptchaValid = false
+    },
+    backButton() {
+      if (this.step > 1) {
+        return this.goBack()
+      }
+
+      this.$router.back()
     },
   },
 }

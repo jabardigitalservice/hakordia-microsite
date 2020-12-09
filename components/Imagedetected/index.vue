@@ -161,7 +161,8 @@ export default {
       // this.startVideo()
     })
   },
-  destroyed() {
+  beforeDestroy() {
+    this.stopCameraStream()
     this.model?.dispose()
   },
   methods: {
