@@ -132,7 +132,7 @@ export default {
       event.target.src = require('static/images/hakordia-2.png')
     },
     openDetail(data) {
-      console.log('open detail')
+      // console.log('open detail')
     },
   },
 }

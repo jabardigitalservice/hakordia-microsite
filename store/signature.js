@@ -5,9 +5,9 @@ import { TipeSignature } from '@/constraints/typeSignature'
 export const state = () => ({
   totalSignatures: 0,
   leaders: [],
-  leadersOpd: [],
-  mayor: [],
-  public: [],
+  leadersOpd: {},
+  mayor: {},
+  public: {},
   signatureType: 0,
 })
 
@@ -15,9 +15,15 @@ export const state = () => ({
 export const getters = {
   totalSignatures: (state) => state.totalSignatures,
   leaders: (state) => state.leaders,
-  leadersOpd: (state) => state.leadersOpd,
-  mayor: (state) => state.mayor,
-  public: (state) => state.public,
+  // OPD
+  leadersOpd: (state) => state.leadersOpd?.data,
+  leadersOpdMeta: (state) => state.leadersOpd?.meta,
+  // mayor
+  mayor: (state) => state.mayor?.data,
+  mayorMeta: (state) => state.mayor?.meta,
+  // public
+  public: (state) => state.public?.data,
+  publicMeta: (state) => state.public?.meta,
   signatureType: (state) => state.signatureType,
 }
 
@@ -75,39 +81,61 @@ export const actions = {
       return null
     }
   },
-  async fetchSignature({ commit }, params) {
+  async fetchSignature({ commit, getters }, params) {
     try {
       const dataParams = removeEmpty(params)
       const { data } = await this.$axios.get('/signatures', {
         params: dataParams,
       })
 
+      // console.log(data)
+
       // add item isVisible
-      const items =
-        data.data.length > 0
-          ? data.data.map((i) => ({ ...i, isVisible: false }))
-          : []
+      // const items =
+      //   data.data.length > 0
+      //     ? data.data.map((i) => ({ ...i, isVisible: false }))
+      //     : []
+
+      const dataLeadersOpd = getters.leadersOpd ? getters.leadersOpd : []
+      const dataMayor = getters.mayor ? getters.mayor : []
+      const dataPublic = getters.public ? getters.public : []
 
       const type = params.type
       switch (type) {
         // insert into state leader
         case TipeSignature.LEADER:
-          commit('FETCH_LEADERS_SUCCESS', items)
+          commit('FETCH_LEADERS_SUCCESS', data.data)
           break
 
         // insert into state leader OPD
         case TipeSignature.LEADEROPD:
-          commit('FETCH_LEADERS_OPD_SUCCESS', items)
+          // concat
+          if (dataLeadersOpd.length > 0) {
+            data.data = dataLeadersOpd.concat(data.data)
+          }
+
+          // console.log(data.data)
+
+          commit('FETCH_LEADERS_OPD_SUCCESS', data)
           break
 
         // insert into state mayor
         case TipeSignature.MAYOR:
-          commit('FETCH_LEADERS_MAYOR_SUCCESS', items)
+          // concat
+          if (dataMayor.length > 0) {
+            data.data = dataMayor.concat(data.data)
+          }
+
+          commit('FETCH_LEADERS_MAYOR_SUCCESS', data)
           break
 
         // insert into state public
         case TipeSignature.PUBLIC:
-          commit('FETCH_LEADERS_PUBLIC_SUCCESS', items)
+          // concat
+          if (dataPublic.length > 0) {
+            data.data = dataPublic.concat(data.data)
+          }
+          commit('FETCH_LEADERS_PUBLIC_SUCCESS', data)
           break
 
         default:
