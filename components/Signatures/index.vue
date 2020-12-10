@@ -46,9 +46,9 @@
     <!-- button -->
     <button
       v-if="
-        !loadingLeaders &&
-        !loadingMayors &&
-        !loadingLeadersOpd &&
+        !loadingLeaders ||
+        !loadingMayors ||
+        !loadingLeadersOpd ||
         !loadingPublic
       "
       class="flex items-center mx-auto text-green-800 border-green-800 border font-bold focus:outline-none rounded py-2 px-4"

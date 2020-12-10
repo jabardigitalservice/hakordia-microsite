@@ -48,7 +48,7 @@
             <div
               class="flex w-full lg:w-1/2 mt-6 rounded-md bg-black py-3 px-2"
             >
-              <div class="text-white">Gambar Tangan diambil.</div>
+              <div class="text-white">{{ getMessage }}</div>
               <div class="mx-auto">
                 <button
                   class="text-green-600 font-bold px-4"
@@ -132,6 +132,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -146,6 +147,16 @@ export default {
       isLoading: false,
       link: '#',
     }
+  },
+  computed: {
+    ...mapGetters('handDetection', {
+      isDetected: 'isDetected',
+    }),
+    getMessage() {
+      return this.isDetected
+        ? 'Gambar Tangan diambil.'
+        : 'Gambar tangan gagal di ambil.'
+    },
   },
   mounted() {
     this.isLoadModel = true

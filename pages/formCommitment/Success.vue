@@ -4,10 +4,10 @@
       Terima kasih karena telah berpartisipasi dalam petisi ini.
     </h2>
 
-    <div class="font-normal text-gray-800 text-justify">
+    <!-- <div class="font-normal text-gray-800 text-justify">
       Sekarang Anda juga bisa melaporkan tindak pidana korupsi disekitar Anda,
       dengan mengklik tombol di bawah ini.
-    </div>
+    </div> -->
 
     <div class="py-8">
       <img src="/images/form_commitment.png" alt="form_commitment" />
