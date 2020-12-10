@@ -125,6 +125,7 @@
               class="block tracking-wide text-15 text-grey-darker text-gray-800 font-bold mb-2"
             >
               Tanda Tangan
+              <span class="font-normal">(wajib diisi)</span>
             </label>
             <div
               class="border h-300 mb-4 focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
@@ -205,11 +206,13 @@ export default {
     saveSignature() {
       const { isEmpty, data } = this.$refs.signaturePad.saveSignature()
 
-      if (!isEmpty) {
-        this.form.signature = data
+      if (isEmpty) {
+        this.$toast.error('Silahkan Isi Tanda Tangan')
+        return false
       }
-      // console.log(isEmpty)
-      // console.log(data)
+
+      this.form.signature = data
+      return true
     },
     clear() {
       this.$refs.signaturePad.clearSignature()

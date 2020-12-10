@@ -41,10 +41,12 @@
         <img src="/images/hakordia-2.png" alt="logo hakordia 2" />
       </div>
     </div>
-
-    <div class="flex justify-center text-12 text-gray-600 pb-5">
-      Copyright © Jabar Digital Service 2020. All rights reserved
-    </div>
+    <a
+      href="https://digitalservice.jabarprov.go.id/"
+      target="_blank"
+      class="flex justify-center text-12 text-gray-600 pb-5 hover:underline"
+      >Copyright © Jabar Digital Service 2020. All rights reserved</a
+    >
   </div>
 </template>
 

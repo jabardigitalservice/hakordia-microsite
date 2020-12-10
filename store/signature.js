@@ -8,12 +8,17 @@ export const state = () => ({
   leadersOpd: [],
   mayor: [],
   public: [],
+  signatureType: 0,
 })
 
 // getters
 export const getters = {
   totalSignatures: (state) => state.totalSignatures,
   leaders: (state) => state.leaders,
+  leadersOpd: (state) => state.leadersOpd,
+  mayor: (state) => state.mayor,
+  public: (state) => state.public,
+  signatureType: (state) => state.signatureType,
 }
 
 // mutations
@@ -45,6 +50,9 @@ export const mutations = {
   FETCH_LEADERS_FAILURE(state) {
     state.leaders = []
   },
+  SELECTED_TYPE(state, index) {
+    state.signatureType = index
+  },
 }
 
 // actions
@@ -74,26 +82,32 @@ export const actions = {
         params: dataParams,
       })
 
+      // add item isVisible
+      const items =
+        data.data.length > 0
+          ? data.data.map((i) => ({ ...i, isVisible: false }))
+          : []
+
       const type = params.type
       switch (type) {
         // insert into state leader
         case TipeSignature.LEADER:
-          commit('FETCH_LEADERS_SUCCESS', data.data)
+          commit('FETCH_LEADERS_SUCCESS', items)
           break
 
         // insert into state leader OPD
         case TipeSignature.LEADEROPD:
-          commit('FETCH_LEADERS_OPD_SUCCESS', data.data)
+          commit('FETCH_LEADERS_OPD_SUCCESS', items)
           break
 
         // insert into state mayor
         case TipeSignature.MAYOR:
-          commit('FETCH_LEADERS_MAYOR_SUCCESS', data.data)
+          commit('FETCH_LEADERS_MAYOR_SUCCESS', items)
           break
 
         // insert into state public
         case TipeSignature.PUBLIC:
-          commit('FETCH_LEADERS_PUBLIC_SUCCESS', data.data)
+          commit('FETCH_LEADERS_PUBLIC_SUCCESS', items)
           break
 
         default:
@@ -102,5 +116,8 @@ export const actions = {
     } catch (e) {
       commit('FETCH_TOTAL_FAILURE')
     }
+  },
+  selectedSignatureType({ commit }, index) {
+    commit('SELECTED_TYPE', index)
   },
 }
