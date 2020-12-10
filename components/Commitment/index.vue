@@ -24,12 +24,12 @@
                     v-for="(item, index) in items"
                     :key="index"
                     :class="[
-                      stepSelected === index
+                      signatureType === index
                         ? 'text-green-700 border-green-700 border-t-2 border-l-2 border-r-2 bg-white min-mb-2'
                         : 'text-gray-600',
                     ]"
                     class="cursor-pointer py-2 px-2 lg:px-6 font-bold rounded-t-md"
-                    @click="stepSelected = index"
+                    @click="selectedItem(index)"
                   >
                     {{ item }}
                   </li>
@@ -92,6 +92,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   props: {
     totalSignatures: {
@@ -104,6 +105,18 @@ export default {
       stepSelected: 0,
       items: ['Pimpinan Provinsi Jawa Barat', 'Masyarakat'],
     }
+  },
+  computed: {
+    ...mapGetters('signature', {
+      signatureType: 'signatureType',
+    }),
+  },
+  methods: {
+    async selectedItem(index) {
+      if (this.signatureType === index) return
+
+      await this.$store.dispatch('signature/selectedSignatureType', index)
+    },
   },
 }
 </script>

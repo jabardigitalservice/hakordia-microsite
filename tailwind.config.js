@@ -58,6 +58,9 @@ module.exports = {
           800: '#1565C0',
           50: '#E3F2FD',
         },
+        biruabu: {
+          800: '#022B55',
+        },
       },
       fontSize: {
         130: '8.125rem',
@@ -79,6 +82,9 @@ module.exports = {
         52: '3.25rem',
         32: '2.125rem',
         26: '1.625rem',
+      },
+      boxShadow: {
+        lg: '0px 6px 20px rgba(0, 0, 0, 0.12)',
       },
       backgroundImage: (theme) => ({
         heading: "url('/images/bg-heading.svg')",

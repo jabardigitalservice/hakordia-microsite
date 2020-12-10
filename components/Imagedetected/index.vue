@@ -219,6 +219,8 @@ export default {
 
       this.isPhotoTaken = !this.isPhotoTaken
 
+      this.setDitect(false)
+
       // const context = this.$refs.canvas.getContext('2d')
       // context.drawImage(this.$refs.camera, 0, 0, 450, 337.5)
       this.runDetectionImage(this.$refs.camera)
@@ -241,13 +243,13 @@ export default {
         this.model.renderPredictions(predictions, canvas, context, img)
 
         if (predictions.length > 0) {
-          this.setDitect()
+          this.setDitect(true)
           this.$toast.success('Gambar Tangan Berhasil disimpan')
         }
       })
     },
-    async setDitect() {
-      await this.$store.dispatch('handDetection/setDetect', true)
+    async setDitect(isDetect) {
+      await this.$store.dispatch('handDetection/setDetect', isDetect)
     },
   },
 }
