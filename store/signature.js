@@ -1,4 +1,5 @@
 import { removeEmpty } from '@/utils/removeEmptyObj'
+import { renameKey } from '@/utils/renameKey'
 import { TipeSignature } from '@/constraints/typeSignature'
 
 // state
@@ -74,7 +75,10 @@ export const actions = {
   },
   async addSignature({ commit }, body) {
     try {
-      const { data } = await this.$axios.post('/signatures', body)
+      // rename recaptcha key
+      const dataBody = renameKey(body, 'recaptcha', 'g-recaptcha-response')
+
+      const { data } = await this.$axios.post('/signatures', dataBody)
 
       return data
     } catch (e) {
@@ -110,7 +114,10 @@ export const actions = {
         // insert into state leader OPD
         case TipeSignature.LEADEROPD:
           // concat
-          if (dataLeadersOpd.length > 0) {
+          if (
+            dataLeadersOpd.length > 0 &&
+            (!params.search || params.search === '')
+          ) {
             data.data = dataLeadersOpd.concat(data.data)
           }
 
@@ -122,7 +129,10 @@ export const actions = {
         // insert into state mayor
         case TipeSignature.MAYOR:
           // concat
-          if (dataMayor.length > 0) {
+          if (
+            dataMayor.length > 0 &&
+            (!params.search || params.search === '')
+          ) {
             data.data = dataMayor.concat(data.data)
           }
 
@@ -132,7 +142,10 @@ export const actions = {
         // insert into state public
         case TipeSignature.PUBLIC:
           // concat
-          if (dataPublic.length > 0) {
+          if (
+            dataPublic.length > 0 &&
+            (!params.search || params.search === '')
+          ) {
             data.data = dataPublic.concat(data.data)
           }
           commit('FETCH_LEADERS_PUBLIC_SUCCESS', data)

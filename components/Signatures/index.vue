@@ -49,19 +49,13 @@
     </template>
 
     <!-- button -->
-    <template v-else>
+    <template v-if="isShowMore">
       <button
-        v-if="
-          !loadingLeaders ||
-          !loadingMayors ||
-          !loadingLeadersOpd ||
-          !loadingPublic
-        "
         class="flex items-center mx-auto text-green-800 border-green-800 border font-bold focus:outline-none rounded py-2 px-4"
         @click="loadMore"
       >
         <img class="mr-2" src="/icons/reload.svg" alt="reload" />
-        <span>Muat Petisi lainnya ...</span>
+        <span>Muat Petisi lainnya ... {{ mayors }}</span>
       </button>
     </template>
   </div>
@@ -77,6 +71,7 @@ export default {
   data() {
     return {
       TipeSignature,
+      isLoading: false,
       leader: 'Pimpinan Provinsi Jawa Barat',
       mayor: 'Walikota dan Bupati  Provinsi Jawa Barat',
       leaderOpd:
@@ -91,14 +86,17 @@ export default {
       // mayor
       loadingMayors: false,
       lastPageMayor: null,
+      currentPageMayor: null,
 
       // OPD
       loadingLeadersOpd: false,
       lastPageOpd: null,
+      currentPageOpd: null,
 
       // public
       loadingPublic: false,
       lastPagePublic: null,
+      currentPagePublic: null,
       isLoadMore: false,
     }
   },
@@ -119,6 +117,35 @@ export default {
       publicMeta: 'publicMeta',
       signatureType: 'signatureType', // value 0 leaders, mayor, OPD & 1 public
     }),
+    isShowMore() {
+      let isShow
+      switch (this.signatureType) {
+        case 0:
+          if (
+            this.currentPageMayor === this.lastPageMayor ||
+            this.currentPageOpd === this.lastPageOpd
+          ) {
+            isShow = false
+          } else {
+            isShow = true
+          }
+          break
+
+        case 1:
+          if (this.currentPagePublic === this.lastPagePublic) {
+            isShow = false
+          } else {
+            isShow = true
+          }
+          break
+
+        default:
+          isShow = false
+          break
+      }
+
+      return isShow
+    },
   },
   watch: {
     signatureType: {
@@ -132,25 +159,12 @@ export default {
       },
       immediate: true,
     },
-    leaders: {
-      handler(value) {
-        if (value.length === 0) {
-          this.loadingLeaders = true
-        } else {
-          this.loadingLeaders = false
-        }
-      },
-      immediate: true,
-    },
     mayors: {
       handler(value) {
-        // if (value.length === 0) {
-        //   this.loadingMayors = true
-        // } else {
-        //   this.loadingMayors = false
-        // }
         if (typeof value === 'object') {
           this.params.page = this.mayorMeta?.current_page
+          // for show load more
+          this.currentPageMayor = this.mayorMeta?.current_page
           this.lastPageMayor = this.mayorMeta?.last_page
         }
       },
@@ -160,6 +174,8 @@ export default {
       handler(value) {
         if (typeof value === 'object') {
           this.params.page = this.leadersOpdMeta?.current_page
+          // for show load more
+          this.currentPageOpd = this.leadersOpdMeta?.current_page
           this.lastPageOpd = this.leadersOpdMeta?.last_page
         }
       },
@@ -169,6 +185,8 @@ export default {
       handler(value) {
         if (typeof value === 'object') {
           this.params.page = this.publicMeta?.current_page
+          // for show load more
+          this.currentPagePublic = this.publicMeta?.current_page
           this.lastPagePublic = this.publicMeta?.last_page
         }
       },
@@ -177,7 +195,14 @@ export default {
   },
   methods: {
     async fetchSignature(params) {
+      this.isLoading = true
       switch (params.type) {
+        case TipeSignature.LEADER:
+          this.loadingLeaders = true
+          await this.$store.dispatch('signature/fetchSignature', params)
+          this.loadingLeaders = false
+          break
+
         case TipeSignature.LEADEROPD:
           if (!this.isLoadMore) {
             this.loadingLeadersOpd = true
@@ -206,6 +231,8 @@ export default {
           await this.$store.dispatch('signature/fetchSignature', params)
           break
       }
+
+      this.isLoading = false
     },
     fetchLeaders() {
       const paramsLeader = {

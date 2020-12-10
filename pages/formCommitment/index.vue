@@ -175,6 +175,7 @@ export default {
         email: '',
         signature: '',
         content: '',
+        recaptcha: '',
       },
     }
   },
@@ -197,7 +198,7 @@ export default {
 
       // submit form
       try {
-        await this.$recaptcha.getResponse()
+        this.form.recaptcha = await this.$recaptcha.getResponse()
 
         // post form to API
         const data = await this.$store.dispatch(

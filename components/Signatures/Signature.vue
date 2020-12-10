@@ -23,8 +23,12 @@
       </div>
     </template>
 
+    <template v-else-if="!isLoading && signatures.length === 0">
+      <EmptyData title="Data Tidak Ditemukan" />
+    </template>
+
     <!-- leader -->
-    <template v-if="isLeader && !isLoading && signatures.length">
+    <template v-if="isLeader && !isLoading && signatures.length > 0">
       <!-- mobile version -->
       <SiganatureMobile :signatures="signatures" />
 
@@ -68,7 +72,7 @@
     </template>
 
     <!-- normal -->
-    <template v-if="isGeneral && !isLoading && signatures.length">
+    <template v-if="isGeneral && !isLoading && signatures.length > 0">
       <!-- mobile version -->
       <SiganatureMobile :signatures="signatures" />
 
@@ -97,9 +101,10 @@
 <script>
 // import DetailSignature from './DetailSignature'
 import Loading from '@/components/Loading'
+import EmptyData from '@/components/EmptyData'
 import SiganatureMobile from './SiganatureMobile'
 export default {
-  components: { SiganatureMobile, Loading },
+  components: { SiganatureMobile, Loading, EmptyData },
   props: {
     isLeader: {
       type: Boolean,
