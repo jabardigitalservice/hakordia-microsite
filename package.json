@@ -20,6 +20,7 @@
     "nuxt": "^2.14.6",
     "nuxt-clipboard": "^0.0.2",
     "vee-validate": "^3.4.5",
+    "vue-js-popover": "^1.2.1",
     "vue-signature-pad": "^2.0.2",
     "vue-social-sharing": "^3.0.4"
   },
