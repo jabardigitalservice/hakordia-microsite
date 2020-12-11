@@ -114,10 +114,7 @@ export const actions = {
         // insert into state leader OPD
         case TipeSignature.LEADEROPD:
           // concat
-          if (
-            dataLeadersOpd.length > 0 &&
-            (!params.search || params.search === '')
-          ) {
+          if (dataLeadersOpd.length > 0 && params.page > 1) {
             data.data = dataLeadersOpd.concat(data.data)
           }
 
@@ -129,10 +126,7 @@ export const actions = {
         // insert into state mayor
         case TipeSignature.MAYOR:
           // concat
-          if (
-            dataMayor.length > 0 &&
-            (!params.search || params.search === '')
-          ) {
+          if (dataMayor.length > 0 && params.page > 1) {
             data.data = dataMayor.concat(data.data)
           }
 
@@ -142,10 +136,7 @@ export const actions = {
         // insert into state public
         case TipeSignature.PUBLIC:
           // concat
-          if (
-            dataPublic.length > 0 &&
-            (!params.search || params.search === '')
-          ) {
+          if (dataPublic.length > 0 && params.page > 1) {
             data.data = dataPublic.concat(data.data)
           }
           commit('FETCH_LEADERS_PUBLIC_SUCCESS', data)

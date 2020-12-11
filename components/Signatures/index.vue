@@ -55,7 +55,7 @@
         @click="loadMore"
       >
         <img class="mr-2" src="/icons/reload.svg" alt="reload" />
-        <span>Muat Petisi lainnya ... {{ mayors }}</span>
+        <span>Muat Petisi lainnya ...</span>
       </button>
     </template>
   </div>
@@ -269,13 +269,6 @@ export default {
       this.fetchSignature(paramsPublic)
     },
     async loadMore() {
-      if (
-        this.params.page === this.lastPageOpd ||
-        this.params.page === this.lastPagePublic
-      ) {
-        return
-      }
-
       this.isLoadMore = true
 
       // load more OPD & Mayor
