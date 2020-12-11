@@ -56,7 +56,7 @@
             <!-- detail signature -->
             <template v-if="currentDetail === index">
               <popover name="detailleader" transition="show-from-left">
-                <DetailSignature :signature="data" />
+                <DetailSignature :signature="signatures[currentDetail]" />
               </popover>
             </template>
             <img :src="data.signature_url" alt="ttd" @error="setAltImg" />
@@ -89,7 +89,7 @@
             <!-- detail signature -->
             <template v-if="currentDetail === index">
               <popover name="detailpublic" transition="show-from-left">
-                <DetailSignature :signature="data" />
+                <DetailSignature :signature="signatures[currentDetail]" />
               </popover>
             </template>
 

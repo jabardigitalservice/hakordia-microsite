@@ -12,7 +12,7 @@
         <!-- detail signature -->
         <template v-if="currentDetail === index">
           <popover name="detailmobile" transition="show-from-left">
-            <DetailSignature :signature="data" />
+            <DetailSignature :signature="signatures[currentDetail]" />
           </popover>
         </template>
         <img
