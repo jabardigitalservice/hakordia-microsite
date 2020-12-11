@@ -269,8 +269,6 @@ export default {
       this.fetchSignature(paramsPublic)
     },
     async loadMore() {
-      console.log('masuk')
-
       this.isLoadMore = true
 
       // load more OPD & Mayor
