@@ -1,7 +1,12 @@
 <template>
   <div>
-    <div class="text-left roun">
-      <img :src="signature.signature_url" alt="ttd" @error="setAltImg" />
+    <div class="text-left font-roboto">
+      <img
+        class="pb-4"
+        :src="signature.signature_url"
+        alt="ttd"
+        @error="setAltImg"
+      />
       <h3 class="text-13 font-bold text-gray-9000">
         {{ `${signature.first_name} ${signature.last_name || ''}` || '-' }}
       </h3>
@@ -9,13 +14,13 @@
         {{ signature.occupation_name || '-' }}</span
       >
 
-      <div class="flex py-3 font-roboto text-biruabu-800 font-normal text-13">
+      <div class="flex py-3 text-biruabu-800 font-medium text-13">
         <img class="mr-2" src="/icons/comment.svg" alt="icon comment" />
         <span>Aspirasi</span>
       </div>
 
       <!-- content -->
-      <div class="text-12 text-gray-800 font-roboto">
+      <div class="text-12 text-gray-800 leading-relaxed">
         {{ signature.content || '-' }}
       </div>
     </div>
@@ -39,15 +44,18 @@ export default {
 </script>
 
 <style>
-[data-popover='foo'] {
+[data-popover='detailleader'],
+[data-popover='detailpublic'],
+[data-popover='detailmobile'] {
   background: white;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  /* color: #f9f9f9; */
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.12);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+  width: 24rem !important;
+}
 
-  /* font-size: 12px;
-  line-height: 1.5; */
-  padding: 1.25rem;
-  border-radius: 0.5rem;
+.vue-popover.dropdown-position-top:before {
+  left: calc(20% - 6px);
 }
 </style>

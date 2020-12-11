@@ -34,9 +34,10 @@
 
       <!-- desktop version -->
       <div class="hidden lg:grid mx-0 lg:mx-16 grid-cols-4">
-        <div
+        <button
           v-for="(data, index) in signatures"
           :key="index"
+          v-popover:detailleader.top
           :class="[
             index === 0
               ? 'col-start-2'
@@ -48,14 +49,16 @@
             index % 2 === 0 ? 'mt-10' : '',
             index === 0 ? '-mt-1' : '',
           ]"
-          class="col-span-1 mx-auto"
+          class="col-span-1 mx-auto focus:outline-none"
+          @click="currentDetail = index"
         >
           <div class="max-w-md text-center cursor-pointer">
             <!-- detail signature -->
-            <!-- <template v-if="data.isVisible">
-              <DetailSignature :signature="data" />
-            </template> -->
-
+            <template v-if="currentDetail === index">
+              <popover name="detailleader" transition="show-from-left">
+                <DetailSignature :signature="data" />
+              </popover>
+            </template>
             <img :src="data.signature_url" alt="ttd" @error="setAltImg" />
             <h3 class="text-14 font-bold text-gray-9000">
               {{ `${data.first_name} ${data.last_name || ''}` || '-' }}
@@ -64,7 +67,7 @@
               {{ data.occupation_name || '-' }}</span
             >
           </div>
-        </div>
+        </button>
       </div>
     </template>
 
@@ -77,14 +80,15 @@
         <button
           v-for="(data, index) in signatures"
           :key="index"
-          v-popover:foo.top
+          v-popover:detailpublic.top
           :class="{ 'pt-10': index % 2 === 0, 'pt-0': index % 2 !== 0 }"
           class="col-span-1 mx-auto focus:outline-none"
+          @click="currentDetail = index"
         >
           <div class="max-w-md text-center">
             <!-- detail signature -->
-            <template>
-              <popover name="foo" transition="show-from-left">
+            <template v-if="currentDetail === index">
+              <popover name="detailpublic" transition="show-from-left">
                 <DetailSignature :signature="data" />
               </popover>
             </template>
@@ -132,11 +136,11 @@ export default {
       default: () => '',
     },
   },
-  // data() {
-  //   return {
-  //     items: [],
-  //   }
-  // },
+  data() {
+    return {
+      currentDetail: null,
+    }
+  },
   methods: {
     setAltImg(event) {
       event.target.src = require('static/images/hakordia-2.png')
