@@ -118,8 +118,7 @@
                 :class="[
                   step === 1 && invalid
                     ? 'text-gray-400 border-gray-400 pointer-events-none'
-                    : step === 2 &&
-                      (isDetected === false || isRecaptchaValid === false)
+                    : step === 2 && isRecaptchaValid === false
                     ? 'text-gray-400 border-gray-400 pointer-events-none'
                     : 'text-green-800 border-green-800',
                 ]"
@@ -154,7 +153,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import { ValidationObserver } from 'vee-validate'
 import BackButton from '@/components/BackButton'
 import FormInput from './FormInput'
@@ -178,11 +176,6 @@ export default {
         recaptcha: '',
       },
     }
-  },
-  computed: {
-    ...mapGetters('handDetection', {
-      isDetected: 'isDetected',
-    }),
   },
   methods: {
     async submitForm() {
