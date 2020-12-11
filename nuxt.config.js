@@ -40,6 +40,7 @@ export default {
     '~/plugins/axios',
     { src: '~/plugins/signaturePad', mode: 'client' },
     { src: '~/plugins/handTrack', ssr: false },
+    { src: '~/plugins/popover', ssr: false },
     '~/plugins/vee-validate',
   ],
 

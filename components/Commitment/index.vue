@@ -150,7 +150,7 @@ export default {
 
         const paramsOpd = {
           ...this.form,
-          type: TipeSignature.LEADEROPD,
+          type: TipeSignature.INSPEKTORATOPD,
         }
 
         const paramsMayor = {

@@ -1,12 +1,20 @@
 <template>
   <!-- mobile version -->
   <div>
-    <div
+    <button
       v-for="(data, index) in signatures"
       :key="index"
-      class="block lg:hidden my-2"
+      v-popover:detailmobile.top
+      class="block mx-auto lg:hidden my-2 focus:outline-none"
+      @click="currentDetail = index"
     >
-      <div class="max-w-md text-center">
+      <div class="w-full text-center">
+        <!-- detail signature -->
+        <template v-if="currentDetail === index">
+          <popover name="detailmobile" transition="show-from-left">
+            <DetailSignature :signature="data" />
+          </popover>
+        </template>
         <img
           class="mx-auto"
           :src="data.signature_url"
@@ -20,7 +28,7 @@
           {{ data.occupation_name || '-' }}</span
         >
       </div>
-    </div>
+    </button>
   </div>
 </template>
 
@@ -31,6 +39,11 @@ export default {
       type: Array,
       default: () => [],
     },
+  },
+  data() {
+    return {
+      currentDetail: null,
+    }
   },
   methods: {
     setAltImg(event) {

@@ -92,14 +92,6 @@ export const actions = {
         params: dataParams,
       })
 
-      // console.log(data)
-
-      // add item isVisible
-      // const items =
-      //   data.data.length > 0
-      //     ? data.data.map((i) => ({ ...i, isVisible: false }))
-      //     : []
-
       const dataLeadersOpd = getters.leadersOpd ? getters.leadersOpd : []
       const dataMayor = getters.mayor ? getters.mayor : []
       const dataPublic = getters.public ? getters.public : []
@@ -112,7 +104,7 @@ export const actions = {
           break
 
         // insert into state leader OPD
-        case TipeSignature.LEADEROPD:
+        case TipeSignature.INSPEKTORATOPD:
           // concat
           if (dataLeadersOpd.length > 0 && params.page > 1) {
             data.data = dataLeadersOpd.concat(data.data)

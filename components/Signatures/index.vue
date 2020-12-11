@@ -203,7 +203,7 @@ export default {
           this.loadingLeaders = false
           break
 
-        case TipeSignature.LEADEROPD:
+        case TipeSignature.INSPEKTORATOPD:
           if (!this.isLoadMore) {
             this.loadingLeadersOpd = true
           }
@@ -242,7 +242,7 @@ export default {
 
       const paramsOpd = {
         ...this.params,
-        type: TipeSignature.LEADEROPD,
+        type: TipeSignature.INSPEKTORATOPD,
       }
 
       const paramsMayor = {
@@ -276,7 +276,7 @@ export default {
         const paramsOpd = {
           ...this.params,
           page: this.params.page + 1,
-          type: TipeSignature.LEADEROPD,
+          type: TipeSignature.INSPEKTORATOPD,
         }
 
         const paramsMayor = {
