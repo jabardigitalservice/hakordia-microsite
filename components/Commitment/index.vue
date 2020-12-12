@@ -5,7 +5,7 @@
         <div
           class="font-roboto text-gray-900 font-medium text-32 lg:leading-79 lg:text-46"
         >
-          Komitmen Kami Terhadap Anti-Korupsi
+          Komitmen Kami Untuk Jabar Juara Tanpa Korupsi
         </div>
         <div class="font-roboto text-18 lg:text-21 text-gray-700">
           Telah terkumpul

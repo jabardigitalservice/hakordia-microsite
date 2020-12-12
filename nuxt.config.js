@@ -14,7 +14,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Kawal Jawa Barat Untuk Terus Maju Lawan Korupsi',
+        content: 'Kawal Jabar Juara tanpa Korupsi',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],

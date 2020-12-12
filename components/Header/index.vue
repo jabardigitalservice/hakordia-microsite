@@ -13,11 +13,10 @@
                 alt="logo_hakordia_jabar"
               />
             </div>
-            <div class="text-34 font-bold pb-1">Kawal Jawa Barat Untuk</div>
-            <div class="text-36 font-bold leading-52">
-              Terus Maju Lawan Korupsi
+            <div class="text-34 font-bold pb-1">
+              Kawal Jabar Juara tanpa Korupsi
             </div>
-            <div class="text-36 font-bold leading-52">dengan</div>
+            <div class="text-34 font-bold leading-52">dengan</div>
           </div>
         </div>
       </div>
