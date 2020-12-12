@@ -128,15 +128,11 @@
               <span class="font-normal">(wajib diisi)</span>
             </label>
             <div
-              class="border h-300 mb-4 focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
+              class="border mb-4 focus:outline-none focus:border-green-800 border-gray-500 rounded"
             >
               <client-only>
                 <div class="relative">
-                  <VueSignaturePad
-                    ref="signaturePad"
-                    class="w-full"
-                    height="270px"
-                  />
+                  <VueSignaturePad ref="signaturePad" height="270px" />
                   <div
                     class="absolute top-0 w-full flex justify-center py-3 text-gray-600"
                   >
