@@ -13,10 +13,33 @@ export default {
       { name: 'google', content: 'notranslate' },
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'url', name: 'url', content: process.env.NUXT_BASE_URL },
       {
         hid: 'description',
         name: 'description',
         content: 'Kawal Jabar Juara tanpa Korupsi',
+      },
+      // OG meta
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'Jabar Juara tanpa Korupsi',
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: 'Kawal Jabar Juara tanpa Korupsi',
+      },
+      { hid: 'og:url', property: 'og:url', content: process.env.NUXT_BASE_URL },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: `${process.env.NUXT_BASE_URL}/icon.png`,
+      },
+      {
+        hid: 'og:site_name',
+        property: 'og:site_name',
+        content: 'Jabar Juara tanpa Korupsi',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
