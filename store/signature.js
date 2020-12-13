@@ -73,12 +73,16 @@ export const actions = {
       commit('FETCH_TOTAL_FAILURE')
     }
   },
-  async addSignature({ commit }, body) {
+  async addSignature({ commit }, body, token = null) {
     try {
+      const paramToken = token ? `?token=${token}` : ''
       // rename recaptcha key
       const dataBody = renameKey(body, 'recaptcha', 'g-recaptcha-response')
 
-      const { data } = await this.$axios.post('/signatures', dataBody)
+      const { data } = await this.$axios.post(
+        `/signatures${paramToken}`,
+        dataBody
+      )
 
       return data
     } catch (e) {

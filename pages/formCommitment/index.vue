@@ -69,11 +69,11 @@
         <form>
           <!-- section form input -->
           <template v-if="step === 1">
-            <FormInput ref="formInput" :form="form" />
+            <FormInput ref="formInput" :form="form" :token="token" />
           </template>
 
           <template v-else-if="step === 2">
-            <FormHand />
+            <FormHand :token="token" />
           </template>
 
           <div
@@ -162,6 +162,7 @@ export default {
   components: { ValidationObserver, BackButton, FormInput, FormHand, Success },
   data() {
     return {
+      token: null,
       step: 1,
       isSuccess: false,
       isRecaptchaValid: false,
@@ -177,7 +178,17 @@ export default {
       },
     }
   },
+  watch: {
+    // whatch changes query
+    '$route.query': 'checkToken',
+  },
+  mounted() {
+    this.checkToken()
+  },
   methods: {
+    checkToken() {
+      this.token = this.$route.query.token || null
+    },
     async submitForm() {
       if (this.step === 1) {
         // save signature
@@ -196,7 +207,8 @@ export default {
         // post form to API
         const data = await this.$store.dispatch(
           'signature/addSignature',
-          this.form
+          this.form,
+          this.token
         )
 
         if (!data) {

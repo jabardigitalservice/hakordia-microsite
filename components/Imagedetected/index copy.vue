@@ -63,31 +63,118 @@
         </div>
       </div>
     </template>
+
+    <!-- <div v-if="!isLoadModel" class="camera-button">
+      <button
+        type="button"
+        class="button is-rounded"
+        :class="{ 'is-primary': !isCameraOpen, 'is-danger': isCameraOpen }"
+        @click="toggleCamera"
+      >
+        <span v-if="!isCameraOpen">Open Camera</span>
+        <span v-else>Close Camera</span>
+      </button>
+    </div>
+
+    <div v-show="isCameraOpen && isLoading" class="camera-loading">
+      <ul class="loader-circle">
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <div
+      v-if="isCameraOpen"
+      v-show="!isLoading"
+      class="camera-box"
+      :class="{ flash: isShotPhoto }"
+    >
+      <div class="camera-shutter" :class="{ flash: isShotPhoto }"></div>
+
+      <video
+        v-show="!isPhotoTaken"
+        ref="camera"
+        :width="450"
+        :height="337.5"
+        autoplay
+      ></video>
+
+      <canvas
+        v-show="isPhotoTaken"
+        id="photoTaken"
+        ref="canvas"
+        :width="450"
+        :height="337.5"
+      ></canvas>
+    </div>
+
+    <div v-if="isCameraOpen && !isLoading" class="camera-shoot">
+      <button type="button" class="button" @click="takePhoto">
+        <img
+          src="https://img.icons8.com/material-outlined/50/000000/camera--v2.png"
+        />
+      </button>
+    </div>
+
+    <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
+      <a
+        id="downloadPhoto"
+        download="my-photo.jpg"
+        class="button"
+        role="button"
+        @click="downloadImage"
+      >
+        Download
+      </a>
+    </div> -->
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
       isLoadModel: true,
+      modelParams: {
+        scoreThreshold: 0.9, // confidence threshold for predictions.,
+      },
+      model: null,
       isCameraOpen: false,
       isPhotoTaken: false,
       isShotPhoto: false,
       isLoading: false,
+      link: '#',
     }
   },
   computed: {
+    ...mapGetters('handDetection', {
+      isDetected: 'isDetected',
+    }),
     getMessage() {
-      return 'Gambar Tangan diambil.'
+      return this.isDetected
+        ? 'Gambar Tangan diambil.'
+        : 'Gambar tangan gagal di ambil.'
     },
   },
   mounted() {
-    this.isLoadModel = false
-    this.toggleCamera()
+    this.isLoadModel = true
+    // Load the model.
+    this.$handTrack.load(this.modelParams).then((lmodel) => {
+      // detect objects in the image.
+      this.model = lmodel
+      this.isLoadModel = false
+      this.toggleCamera()
+      // console.log('Loaded Model!')
+      // updateNote.textContent = 'Loaded Model!'
+      // trackButton.disabled = false
+      // this.startVideo()
+    })
   },
   beforeDestroy() {
     this.stopCameraStream()
+    this.model?.dispose()
   },
   methods: {
     toggleCamera() {
@@ -143,17 +230,11 @@ export default {
 
       this.isPhotoTaken = !this.isPhotoTaken
 
-      const canvas = document.getElementById('photoTaken')
-      const context = canvas.getContext('2d')
-      canvas.width = this.$refs.camera.width
-      canvas.height = this.$refs.camera.height
-      context.drawImage(
-        this.$refs.camera,
-        0,
-        0,
-        this.$refs.camera.width,
-        this.$refs.camera.height
-      )
+      this.setDitect(false)
+
+      // const context = this.$refs.canvas.getContext('2d')
+      // context.drawImage(this.$refs.camera, 0, 0, 450, 337.5)
+      this.runDetectionImage(this.$refs.camera)
     },
 
     downloadImage() {
@@ -163,6 +244,23 @@ export default {
         .toDataURL('image/jpeg')
         .replace('image/jpeg', 'image/octet-stream')
       download.setAttribute('href', canvas)
+    },
+    runDetectionImage(img) {
+      // const canvas = document.getElementById('canvas')
+      const canvas = document.getElementById('photoTaken')
+      const context = canvas.getContext('2d')
+      this.model.detect(img).then((predictions) => {
+        // console.log('Predictions: ', predictions)
+        this.model.renderPredictions(predictions, canvas, context, img)
+
+        if (predictions.length > 0) {
+          this.setDitect(true)
+          this.$toast.success('Gambar Tangan Berhasil disimpan')
+        }
+      })
+    },
+    async setDitect(isDetect) {
+      await this.$store.dispatch('handDetection/setDetect', isDetect)
     },
   },
 }
