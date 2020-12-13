@@ -5,6 +5,7 @@ export default {
     baseApi: process.env.NUXT_BASE_API,
     siteKey: process.env.NUXT_SITE_KEY,
   },
+  mode: 'universal',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'Jabar Juara tanpa Korupsi',
@@ -35,6 +36,9 @@ export default {
   css: [],
 
   // vendor: ['handTrack'],
+  generate: {
+    fallback: true,
+  },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
