@@ -74,8 +74,7 @@ export default {
       isLoading: false,
       leader: 'Pimpinan Provinsi Jawa Barat',
       mayor: 'Walikota dan Bupati  Provinsi Jawa Barat',
-      leaderOpd:
-        'Pimpinan & Staff Seluruh Organisasi Perangkat Daerah Kotakab Se-Jabar',
+      leaderOpd: 'Pimpinan Pemerintah Daerah Provinsi Jawa Barat',
       params: {
         type: null,
         search: null,
