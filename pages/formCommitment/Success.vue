@@ -17,7 +17,7 @@
       <router-link
         class="flex items-center border font-bold text-green-800 border-green-800 focus:outline-none rounded py-2 px-4"
         tag="button"
-        to="/"
+        to="/?tab=1#tab-commitment"
       >
         Kembali Ke Beranda
       </router-link>

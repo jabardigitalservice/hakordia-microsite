@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="tab-commitment">
     <div class="bg-gray-100 px-6">
       <div class="text-center pt-6">
         <div
@@ -128,7 +128,20 @@ export default {
       signatureType: 'signatureType',
     }),
   },
+  watch: {
+    // whatch changes query
+    '$route.query': 'currentTab',
+  },
+  mounted() {
+    this.currentTab()
+  },
   methods: {
+    currentTab() {
+      const tab = this.$route.query.tab || null
+      const currentTab = tab < 2 ? parseInt(tab) : null
+      this.selectedItem(currentTab)
+      console.log(currentTab)
+    },
     async selectedItem(index) {
       if (this.signatureType === index) return
 
