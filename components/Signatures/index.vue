@@ -80,6 +80,8 @@ export default {
         type: null,
         search: null,
         page: null,
+        order_by: null,
+        order_dir: null,
       },
       loadingLeaders: false,
 
@@ -238,16 +240,22 @@ export default {
       const paramsLeader = {
         ...this.params,
         type: TipeSignature.LEADER,
+        order_by: 'sequence',
+        order_dir: 'asc',
       }
 
       const paramsOpd = {
         ...this.params,
         type: TipeSignature.INSPEKTORATOPD,
+        order_by: 'sequence',
+        order_dir: 'asc',
       }
 
       const paramsMayor = {
         ...this.params,
         type: TipeSignature.MAYOR,
+        order_by: 'sequence',
+        order_dir: 'asc',
       }
 
       // fetch leader
@@ -277,12 +285,16 @@ export default {
           ...this.params,
           page: this.params.page + 1,
           type: TipeSignature.INSPEKTORATOPD,
+          order_by: 'sequence',
+          order_dir: 'asc',
         }
 
         const paramsMayor = {
           ...this.params,
           page: this.params.page + 1,
           type: TipeSignature.MAYOR,
+          order_by: 'sequence',
+          order_dir: 'asc',
         }
 
         // fetch OPD & Mayor
