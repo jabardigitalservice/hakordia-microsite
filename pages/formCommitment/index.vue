@@ -214,6 +214,7 @@ export default {
         )
 
         if (!data) {
+          await this.$recaptcha.reset()
           return this.$toast.error('Terjadi Kesalahan')
         }
 
