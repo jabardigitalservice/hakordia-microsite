@@ -138,9 +138,8 @@ export default {
   methods: {
     currentTab() {
       const tab = this.$route.query.tab || null
-      const currentTab = tab < 2 ? parseInt(tab) : null
+      const currentTab = tab < 2 ? parseInt(tab) : 0
       this.selectedItem(currentTab)
-      console.log(currentTab)
     },
     async selectedItem(index) {
       if (this.signatureType === index) return
