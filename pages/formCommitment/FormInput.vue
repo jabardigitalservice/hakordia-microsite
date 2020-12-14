@@ -1,122 +1,122 @@
 <template>
   <div>
     <!-- check token -->
-    <template v-if="!token">
-      <!-- section 1 -->
-      <div class="flex flex-col lg:flex-row justify-between lg:pb-3">
-        <!-- firt name -->
-        <div class="w-full lg:w-1/2">
-          <ValidationProvider
-            v-slot="{ errors }"
-            name="firt_name"
-            rules="required"
-          >
-            <div class="md:flex mb-5">
-              <div class="md:w-full pr-0 lg:pr-8">
-                <label
-                  class="block tracking-wide text-15 text-grey-darker text-gray-800 font-bold mb-2"
-                >
-                  Nama Depan
-                  <span class="font-normal">(wajib diisi)</span>
-                </label>
-                <input
-                  v-model="form.first_name"
-                  class="appearance-none block w-full text-grey-darker border focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
-                  placeholder="Masukkan Nama Depan"
-                />
-                <p class="text-red-500 text-xs italic mt-1">
-                  {{ errors[0] }}
-                </p>
-              </div>
-            </div>
-          </ValidationProvider>
-        </div>
-
-        <!-- last name -->
-        <div class="w-full lg:w-1/2">
+    <!-- <template v-if="!token"> -->
+    <!-- section 1 -->
+    <div class="flex flex-col lg:flex-row justify-between lg:pb-3">
+      <!-- firt name -->
+      <div class="w-full lg:w-1/2">
+        <ValidationProvider
+          v-slot="{ errors }"
+          name="firt_name"
+          rules="required"
+        >
           <div class="md:flex mb-5">
             <div class="md:w-full pr-0 lg:pr-8">
               <label
                 class="block tracking-wide text-15 text-grey-darker text-gray-800 font-bold mb-2"
               >
-                Nama Belakang
+                Nama Depan
+                <span class="font-normal">(wajib diisi)</span>
               </label>
               <input
-                v-model="form.last_name"
+                v-model="form.first_name"
                 class="appearance-none block w-full text-grey-darker border focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
-                placeholder="Masukkan Nama Belakang"
+                placeholder="Masukkan Nama Depan"
               />
+              <p class="text-red-500 text-xs italic mt-1">
+                {{ errors[0] }}
+              </p>
             </div>
+          </div>
+        </ValidationProvider>
+      </div>
+
+      <!-- last name -->
+      <div class="w-full lg:w-1/2">
+        <div class="md:flex mb-5">
+          <div class="md:w-full pr-0 lg:pr-8">
+            <label
+              class="block tracking-wide text-15 text-grey-darker text-gray-800 font-bold mb-2"
+            >
+              Nama Belakang
+            </label>
+            <input
+              v-model="form.last_name"
+              class="appearance-none block w-full text-grey-darker border focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
+              placeholder="Masukkan Nama Belakang"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- section 2 -->
+    <div class="flex flex-col lg:flex-row justify-between lg:pb-3">
+      <!-- Profesi -->
+      <div class="w-full lg:w-1/2">
+        <div class="md:flex mb-5">
+          <div class="md:w-full pr-0 lg:pr-8">
+            <label
+              class="block tracking-wide text-15 text-grey-darker text-gray-800 font-bold mb-2"
+            >
+              Profesi
+            </label>
+            <input
+              v-model="form.occupation_name"
+              class="appearance-none block w-full text-grey-darker border focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
+              placeholder="Masukkan Nama Profesi"
+            />
           </div>
         </div>
       </div>
 
-      <!-- section 2 -->
-      <div class="flex flex-col lg:flex-row justify-between lg:pb-3">
-        <!-- Profesi -->
-        <div class="w-full lg:w-1/2">
+      <!-- Instansi -->
+      <div class="w-full lg:w-1/2">
+        <div class="md:flex mb-5">
+          <div class="md:w-full pr-0 lg:pr-8">
+            <label
+              class="block tracking-wide text-15 text-grey-darker text-gray-800 font-bold mb-2"
+            >
+              Instansi
+            </label>
+            <input
+              v-model="form.workplace_name"
+              class="appearance-none block w-full text-grey-darker border focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
+              placeholder="Masukkan Nama Instansi"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- section 1 -->
+    <div class="flex flex-col lg:flex-row justify-between lg:pb-3">
+      <!-- email -->
+      <div class="w-full lg:w-1/2">
+        <ValidationProvider v-slot="{ errors }" name="email" rules="email">
           <div class="md:flex mb-5">
             <div class="md:w-full pr-0 lg:pr-8">
               <label
                 class="block tracking-wide text-15 text-grey-darker text-gray-800 font-bold mb-2"
               >
-                Profesi
+                Email
               </label>
               <input
-                v-model="form.occupation_name"
+                v-model="form.email"
+                type="email"
                 class="appearance-none block w-full text-grey-darker border focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
-                placeholder="Masukkan Nama Profesi"
+                placeholder="Masukkan Email"
               />
+              <p class="text-red-500 text-xs italic mt-1">
+                {{ errors[0] }}
+              </p>
             </div>
           </div>
-        </div>
-
-        <!-- Instansi -->
-        <div class="w-full lg:w-1/2">
-          <div class="md:flex mb-5">
-            <div class="md:w-full pr-0 lg:pr-8">
-              <label
-                class="block tracking-wide text-15 text-grey-darker text-gray-800 font-bold mb-2"
-              >
-                Instansi
-              </label>
-              <input
-                v-model="form.workplace_name"
-                class="appearance-none block w-full text-grey-darker border focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
-                placeholder="Masukkan Nama Instansi"
-              />
-            </div>
-          </div>
-        </div>
+        </ValidationProvider>
       </div>
-
-      <!-- section 1 -->
-      <div class="flex flex-col lg:flex-row justify-between lg:pb-3">
-        <!-- email -->
-        <div class="w-full lg:w-1/2">
-          <ValidationProvider v-slot="{ errors }" name="email" rules="email">
-            <div class="md:flex mb-5">
-              <div class="md:w-full pr-0 lg:pr-8">
-                <label
-                  class="block tracking-wide text-15 text-grey-darker text-gray-800 font-bold mb-2"
-                >
-                  Email
-                </label>
-                <input
-                  v-model="form.email"
-                  type="email"
-                  class="appearance-none block w-full text-grey-darker border focus:outline-none focus:border-green-800 border-gray-500 rounded py-2 px-4"
-                  placeholder="Masukkan Email"
-                />
-                <p class="text-red-500 text-xs italic mt-1">
-                  {{ errors[0] }}
-                </p>
-              </div>
-            </div>
-          </ValidationProvider>
-        </div>
-      </div>
-    </template>
+    </div>
+    <!-- </template> -->
 
     <!-- section 3 -->
     <div class="flex flex-col lg:flex-row justify-between lg:pb-3">

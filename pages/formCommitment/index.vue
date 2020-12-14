@@ -175,6 +175,7 @@ export default {
         signature: '',
         content: '',
         recaptcha: '',
+        token: null,
       },
     }
   },
@@ -187,7 +188,7 @@ export default {
   },
   methods: {
     checkToken() {
-      this.token = this.$route.query.token || null
+      this.form.token = this.$route.query.token || null
     },
     async submitForm() {
       if (this.step === 1) {
@@ -207,8 +208,7 @@ export default {
         // post form to API
         const data = await this.$store.dispatch(
           'signature/addSignature',
-          this.form,
-          this.token
+          this.form
         )
 
         if (!data) {
