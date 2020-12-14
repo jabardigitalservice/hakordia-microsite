@@ -137,7 +137,7 @@ export default {
   },
   methods: {
     currentTab() {
-      const tab = this.$route.query.tab || null
+      const tab = this.$route.query.tab || 0
       const currentTab = tab < 2 ? parseInt(tab) : 0
       this.selectedItem(currentTab)
     },
