@@ -158,6 +158,8 @@ import BackButton from '@/components/BackButton'
 import FormInput from './FormInput'
 import FormHand from './FormHand'
 import Success from './Success'
+import { scrollTop } from '~/utils/scrollTop'
+
 export default {
   components: { ValidationObserver, BackButton, FormInput, FormHand, Success },
   data() {
@@ -216,6 +218,7 @@ export default {
         }
 
         this.isSuccess = true
+        scrollTop()
         await this.$recaptcha.reset()
       } catch (error) {
         this.$toast.error('Silahkan Selesaikan Captcha')
