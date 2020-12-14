@@ -88,7 +88,11 @@
           <div class="max-w-md text-center">
             <!-- detail signature -->
             <template v-if="currentDetail === index">
-              <popover name="detailpublic" transition="show-from-left">
+              <popover
+                name="detailpublic"
+                transition="show-from-left"
+                :delay="200"
+              >
                 <DetailSignature :signature="signatures[currentDetail]" />
               </popover>
             </template>
