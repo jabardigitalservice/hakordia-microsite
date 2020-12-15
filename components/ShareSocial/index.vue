@@ -28,8 +28,9 @@ export default {
     return {
       sharing: {
         url: process.env.baseUrl,
-        title: 'Kamu Anti-Korupsi? Yuk Buat Komitmen Anti Korupsimu Disini.',
-        description: `Wujudkan Jawa Barat bebas korupsi dengan ikut menandatangani petisi online untuk mewujudkan Jawa Barat Juara Tanpa Korupsi melalui link berikut ${process.env.baseUrl}`,
+        title: 'Sampurasun, Wargi Jabar!',
+        description: `Kamu Anti-Korupsi? Yuk Buat Komitmen Anti Korupsimu di Sini. ${process.env.baseUrl} \n Wujudkan Jawa Barat bebas korupsi dengan ikut menandatangani petisi online untuk mewujudkan Jawa Barat Juara Tanpa Korupsi. \n
+#JabarAntiKorupsi \n#JabarJuara`,
         quote: 'Jabar Juara Tanpa Korupsi. Integritas Terjaga Kala Pandemi.',
         hashtags: 'HakordiaJabar2020',
       },

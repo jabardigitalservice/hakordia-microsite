@@ -48,7 +48,7 @@
       </div>
 
       <div class="font-lato text-gray-800 leading-26 mb-6">
-        Wujudkan Jawa Barat bebas korupsi dengan ikut menandatangani <br />
+        Wujudkan Jawa Barat bebas dari korupsi dengan ikut menandatangani <br />
         petisi online untuk mewujudkan
         <span class="font-bold">Jawa Barat Juara Tanpa Korupsi.</span>
       </div>
